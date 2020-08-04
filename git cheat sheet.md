@@ -73,6 +73,22 @@ git checkout -b <name>
 ```bash
 git branch -d <name>
 ```
+## Удалить ветку в remote репозитории
+```bash
+git push --delete <remote> <branch>
+```
+## Очистить все недействительные ссылки на ветки в remote репозитории
+```bash
+git remote prune <remote>
+```
+## Очистка недействительные ссылок совмещенное с получением обновлений
+```bash
+git fetch --prune <remote>
+```
+Что бы не указывать каждый раз опцию `--prune` можно задать соответствующий параметр в конфиге:
+```bash
+git config --global fetch.prune true
+```
 # Отмена
 ## Отменить изменения в незакомиченном файле:
 ```bash
