@@ -1,3 +1,24 @@
+# Стандартные команды отладки
+1. Запустить gdb с указанием файла программы. Программа должна быть собрана с отладочной информацией.
+```gdb
+  gdb <app name>
+```
+2. Запустить gdb и подключиться к работающему процессу
+```gdb
+  gdb -p <PID>
+```
+3. Часто используемые команды gdb
+```gdb
+  (gdb) info threads			# получить информацию о потоках
+  (gdb) info shared				#
+  (gdb) info locals				# получить информацию об автоматических переменных
+  (gdb) info files				#
+  (gdb) info variables			#  (gdb) core <core file>		# загрузить файл дампа
+  (gdb) thread <N>				# перейти к потоку N. Номер потока взять из info threads(gdb) backtrace <N>			# получить стек вызовов. Если не указывать N, то ...
+  (gdb) frame <N>				# перейти к фрейму функции N. Номер фрейма можно получить из вывода backtrace
+  (gdb) print <var>				# получить значение переменной var
+  (gdb) help <cmd>				# справка по команде cmd, например, help info
+```
 # [Как посмотреть причину генерации core файла в gdb](https://www.opennet.ru/tips/940_gdb_debug_core.shtml)
 
 ***программа** - файл рухнувшей программы, собранной с включением отладочной информации
@@ -47,14 +68,4 @@ $ gdb программа
   (gdb) whatis result
 ```
 
-6. Команды, которые можно использовать для получения дополнительной информации
-```gdb
-  (gdb) info thread
-  (gdb) info shared
-  (gdb) info locals
-  (gdb) info files
-  (gdb) info variables
-  (gdb) help info
-```
- 
-7. Полезно также посомотреть на выполнении какого системного вызова происходит сбой используя программы: strace (http://strace.sourceforge.net), ltrace (для Linux) или ktrace и truss (входят в состав FreeBSD).
+6. Полезно также посомотреть на выполнении какого системного вызова происходит сбой используя программы: strace (http://strace.sourceforge.net), ltrace (для Linux) или ktrace и truss (входят в состав FreeBSD).
