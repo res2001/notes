@@ -3,6 +3,8 @@ https://www.opennet.ru/docs/RUS/gdb/
 1. Запустить gdb с указанием файла программы. Программа должна быть собрана с отладочной информацией.
 ```gdb
   gdb <app name>
+  или
+  gdb --args <app name> <args for app>
 ```
 2. Запустить gdb и подключиться к работающему процессу
 ```gdb
@@ -17,7 +19,14 @@ https://www.opennet.ru/docs/RUS/gdb/
   (gdb) info variables			#  (gdb) core <core file>		# загрузить файл дампа
   (gdb) thread <N>				# перейти к потоку N. Номер потока взять из info threads(gdb) backtrace <N>			# получить стек вызовов. Если не указывать N, то ...
   (gdb) frame <N>				# перейти к фрейму функции N. Номер фрейма можно получить из вывода backtrace
-  (gdb) print <var>				# получить значение переменной var
+
+	# https://visualgdb.com/gdbreference/commands/print
+  (gdb) print <var>				# получить значение переменной var, умеет печатать структуры целиком
+  (gdb) print /x <var>			# получить значение переменной var в шестнадцатиричном представлении
+  (gdb) print *ptr				# получить значение переменной, на которую указывает указатель ptr
+  (gdb) print *array@len		# получить значение len элементов массива array
+  (gdb) x /length ptr			# получить дамп памяти по void *ptr; https://visualgdb.com/gdbreference/commands/x
+  
   (gdb) help <cmd>				# справка по команде cmd, например, help info
 ```
 # [Как посмотреть причину генерации core файла в gdb](https://www.opennet.ru/tips/940_gdb_debug_core.shtml)
